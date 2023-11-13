@@ -1,0 +1,31 @@
+select 
+	c.caso ,
+	d.gravedad ,
+	d.restriccion ,
+	d.tipo_propietario ,
+	d.jornada ,
+	u.via ,
+	u.barrio ,
+	u.codigo_comuna ,
+	u.nombre_comuna 
+from 
+       "Prueba".caso c 
+       left join "Prueba".ubicacion u 
+             on c.caso = u.caso 
+       left join "Prueba".detalle d 
+             on c.caso = d.caso  
+where 
+       d.tipo_propietario = 'Particular' 
+       and d.jornada = 'Diurno' 
+group by 
+	c.caso ,
+	d.gravedad ,
+	d.restriccion ,
+	d.tipo_propietario ,
+	d.jornada ,
+	u.via ,
+	u.barrio ,
+	u.codigo_comuna ,
+	u.nombre_comuna 
+order by 
+       1 asc 
